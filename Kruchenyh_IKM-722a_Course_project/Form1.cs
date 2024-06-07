@@ -93,20 +93,33 @@ namespace Kruchenyh_IKM_722a_Course_project
         {
             Close();
         }
+        private void новийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MajorObject.NewRec();
+            tbInput.Clear();
+            label1.Text = "";
+        }
 
         private void проПрограмуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About A = new About();
             A.ShowDialog();
         }
+        private void зберегтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MajorObject.SaveFileNameExists()) // задане ім’я файлу існує?
+                MajorObject.SaveToFile(); // зберегти дані в файл
+            else
+                зберегтиЯкToolStripMenuItem_Click(sender, e); //
+        }
 
         private void зберегтиЯкToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (sfdSave.ShowDialog() == DialogResult.OK)
+            if (sfdSave.ShowDialog() == DialogResult.OK) 
             {
-                MajorObject.WriteSaveFileName(sfdSave.FileName);
-                MajorObject.SaveToFile();
-
+                MajorObject.WriteSaveFileName(sfdSave.FileName); 
+                MajorObject.Generator();
+                MajorObject.SaveToFile(); 
             }
         }
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -136,6 +149,14 @@ namespace Kruchenyh_IKM_722a_Course_project
             }
 
             MessageBox.Show(disk, "Накопичувачі");
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MajorObject.Modify)
+                if (MessageBox.Show("Дані не були збережені. Продовжити вихід?", "УВАГА",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+                    e.Cancel = true; 
         }
     }
 }
