@@ -153,8 +153,9 @@
             // 
             this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
             this.зберегтиToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.зберегтиToolStripMenuItem.Text = "Зберегти";
+            this.зберегтиToolStripMenuItem.Click += new System.EventHandler(this.зберегтиToolStripMenuItem_Click);
             // 
             // зберегтиЯкToolStripMenuItem
             // 
@@ -222,6 +223,7 @@
             // ofdOpen
             // 
             this.ofdOpen.FileName = "openFileDialog1";
+            this.ofdOpen.Filter = "рабочие файлы|*.GoG|Все файлы|*.*";
             // 
             // dgwOpen
             // 
