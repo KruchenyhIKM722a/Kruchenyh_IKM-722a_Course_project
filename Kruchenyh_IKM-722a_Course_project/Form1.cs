@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace Kruchenyh_IKM_722a_Course_project
 {
@@ -35,6 +38,7 @@ namespace Kruchenyh_IKM_722a_Course_project
             A.ShowDialog();
             MajorObject = new MajorWork();
             this.Mode = true;
+            MajorObject.Modify = false;
         }
 
         private void bStart_Click(object sender, EventArgs e)
@@ -98,12 +102,13 @@ namespace Kruchenyh_IKM_722a_Course_project
 
         private void зберегтиЯкToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (sfdSave.ShowDialog() == DialogResult.OK) 
-            { 
-                MessageBox.Show(sfdSave.FileName);
+            if (sfdSave.ShowDialog() == DialogResult.OK)
+            {
+                MajorObject.WriteSaveFileName(sfdSave.FileName);
+                MajorObject.SaveToFile();
+
             }
         }
-
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ofdOpen.ShowDialog() == DialogResult.OK)

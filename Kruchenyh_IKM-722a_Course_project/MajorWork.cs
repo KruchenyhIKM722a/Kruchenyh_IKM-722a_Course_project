@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Kruchenyh_IKM_722a_Course_project
 {
@@ -11,6 +14,8 @@ namespace Kruchenyh_IKM_722a_Course_project
         private System.DateTime TimeBegin;
         private string Data; 
         private string Result;
+        public bool Modify;
+        private int Key;
 
         public void SetTime() 
         {
@@ -39,6 +44,7 @@ namespace Kruchenyh_IKM_722a_Course_project
             {
                 this.Result = Convert.ToString(false);
             }
+            this.Modify = true;
         }
         private string SaveFileName;
         private string OpenFileName;
@@ -49,6 +55,32 @@ namespace Kruchenyh_IKM_722a_Course_project
         public void WriteOpenFileName(string S)
         {
             this.OpenFileName = S;
+        }
+        public void SaveToFile() 
+        {
+            if (!this.Modify)
+                return;
+            try
+            {
+                Stream S; 
+                if (File.Exists(this.SaveFileName))
+                    S = File.Open(this.SaveFileName, FileMode.Append);
+                else
+                    S = File.Open(this.SaveFileName, FileMode.Create);
+                Buffer D = new Buffer(); 
+                D.Data = this.Data;
+                D.Result = Convert.ToString(this.Result);
+                D.Key = Key;
+                BinaryFormatter BF = new BinaryFormatter(); 
+                S.Flush(); 
+                S.Close(); 
+                this.Modify = false; 
+            }
+            catch
+            {
+
+                MessageBox.Show("Помилка роботи з файлом"); 
+            }
         }
     }
 }
