@@ -125,8 +125,9 @@ namespace Kruchenyh_IKM_722a_Course_project
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ofdOpen.ShowDialog() == DialogResult.OK)
-            { 
-                MessageBox.Show(ofdOpen.FileName);
+            {
+                MajorObject.WriteOpenFileName(ofdOpen.FileName);
+                MajorObject.ReadFromFile(dgwOpen); 
             }
         }
 
@@ -157,6 +158,11 @@ namespace Kruchenyh_IKM_722a_Course_project
                 if (MessageBox.Show("Дані не були збережені. Продовжити вихід?", "УВАГА",
                 MessageBoxButtons.YesNo) == DialogResult.No)
                     e.Cancel = true; 
+        }
+
+        private void bSearch_Click(object sender, EventArgs e)
+        {
+            MajorObject.Find(tbSearch.Text);
         }
     }
 }
