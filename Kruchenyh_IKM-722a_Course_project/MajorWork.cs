@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Kruchenyh_IKM_722a_Course_project
 {
@@ -16,6 +17,12 @@ namespace Kruchenyh_IKM_722a_Course_project
         private string Result;
         public bool Modify;
         private int Key;
+       
+        public Stack myStack = new Stack();
+        public string[] myArr = new string[100];
+
+        public Queue myQueue = new Queue();
+        public string[] smyQueue = new string[100];
 
         public void SetTime()
         {
